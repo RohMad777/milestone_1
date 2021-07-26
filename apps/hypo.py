@@ -19,7 +19,7 @@ layout = html.Div([
                         ),
                     ]
                 ),
-                width=12
+                width=12,
             ),
             dbc.Col([
 
@@ -157,7 +157,7 @@ layout = html.Div([
                 ],
                     className="mb-5 mt-5",),
             ],
-                className="mb-5 mt-2"
+                className="mb-5 mt-2",
             )
         ])
     ])
