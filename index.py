@@ -6,7 +6,7 @@ from dash.dependencies import Input, Output
 from app import app
 from app import server
 
-from apps import home, hypo, selling
+from apps import home, selling, hypo
 
 # Create simple navbar with a brand text and 3 links: 2 to internal pages, 1 to original dataset
 # This navbar is always displayed on top
@@ -18,14 +18,30 @@ app.layout = html.Div([
         color="dark",
         dark=True,
         children=[
-            dbc.NavItem(dbc.NavLink('Visualization', href='/apps/visual')),
-            dbc.NavItem(dbc.NavLink('Hypothesis', href='/apps/hypo')),
-            dbc.NavItem(dbc.NavLink(
-                'Dataset', href='https://www.kaggle.com/aungpyaeap/supermarket-sales'))
+            dbc.ButtonGroup(
+                [
+                    dbc.Button("Visualization",  href='/apps/visual'),
+                    dbc.Button("Hypothesis", href='/apps/hypo'),
+                    dbc.DropdownMenu(
+                        [dbc.DropdownMenuItem('Dataset', href='https://www.kaggle.com/aungpyaeap/supermarket-sales'),
+                         dbc.DropdownMenuItem("My Github", href='https://github.com/RohMad777')],
+                        label="Data",
+                        group=True,
+                    ),
+                ]
+            ),
         ]
     ),
+
     dcc.Location(id='url'),
-    html.Div(id='page-content', children=[])
+    html.Div(id='page-content', children=[]),
+    html.Div(
+        dbc.Row(dbc.Col(html.Div("© Copyright by RohMad - 2021"), className="text-center"),
+                align="center",
+                justify="center"
+                ),
+        className="p-4  bg-dark text-white"
+    )
 
 ])
 

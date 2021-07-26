@@ -28,6 +28,8 @@ layout = html.Div([
                     [
                         dbc.CardBody(
                             [
+                                dbc.CardImg(
+                                    src="assets/img/visual.png", top=True),
                                 html.H4("Visualization",
                                         className="card-title text-center"),
                                 html.P(
@@ -41,30 +43,38 @@ layout = html.Div([
                     ],
                     style={"width": "20rem"},
                 ),
-                width=6, className="mb-6",
+                width=4, className="mb-6",
             ),
+
+            dbc.Col(html.Div(""), width=4, lg=3),
 
             dbc.Col(
                 dbc.Card(
                     [
                         dbc.CardBody(
                             [
-                                html.H4("Hyphotesist",
+                                dbc.CardImg(
+                                    src="assets/img/hipo.png", top=True),
+                                html.H4("Hypothesis",
                                         className="card-title text-center"),
                                 html.P(
                                     "Hyphotesist with Two Sample Test",
                                     className="card-text",
                                 ),
                                 dbc.Button(
-                                    "Go Hypothesist", className="text-center btn-lg", block=True, color="primary", href="/apps/hypo"),
+                                    "Go Hypothesis", className="text-center btn-lg", block=True, color="primary", href="/apps/hypo"),
                             ]
                         ),
                     ],
                     style={"width": "20rem"},
                 ),
-                width=6, className="mb-6"
+                width=4, className="mb-6"
             ),
-        ], className="mb-5"),
+        ],
+            justify="around",
+            align="end",
+            className="mb-5"
+        ),
     ])
 
 ])
