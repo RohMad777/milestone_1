@@ -123,6 +123,7 @@ layout = html.Div([
             ),
         ]),
 
+
     ])
 ])
 
@@ -133,8 +134,7 @@ layout = html.Div([
 def update_line_chart(product_line):
     mask = df.product_line.isin(product_line)
     fig = px.line(df[mask],
-                  x="date", y="gross_inc", color='gender', ),
-
+                  x="date", y="gross_inc", color='gender')
     return fig
 
 
