@@ -33,8 +33,8 @@ layout = html.Div([
                                 html.H4("Visualization",
                                         className="card-title text-center"),
                                 html.P(
-                                    "Visualization data with, graph, bar, pie, plot",
-                                    className="card-text",
+                                    "Visualization data with graph, bar, pie, scatter",
+                                    className="card-text text-center",
                                 ),
                                 dbc.Button(
                                     "Go Visualization", className="text-center btn-lg", block=True, color="primary", href="/apps/visual"),
@@ -58,8 +58,8 @@ layout = html.Div([
                                 html.H4("Hypothesis",
                                         className="card-title text-center"),
                                 html.P(
-                                    "Hyphotesist with Two Sample Test",
-                                    className="card-text",
+                                    "Hypothesis with Two Sample Test",
+                                    className="card-text text-center",
                                 ),
                                 dbc.Button(
                                     "Go Hypothesis", className="text-center btn-lg", block=True, color="primary", href="/apps/hypo"),

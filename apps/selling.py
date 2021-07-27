@@ -68,7 +68,7 @@ layout = html.Div([
                     id='graph-3',
                     figure=px.scatter(
                         df, x='date', y='gross_inc', color='product_line',
-                        title='Total Sales in All Branch by Product Line'
+                        title='Gross Income by Product Line'
                     )
                 )
             ),
@@ -81,7 +81,7 @@ layout = html.Div([
                         x='date',
                         y='gross_inc',
                         color='city',
-                        title='Gross Income Over Time'
+                        title='Gross Income by City'
                     )
                 )
             )
@@ -90,7 +90,6 @@ layout = html.Div([
         dbc.Row([
             dbc.Col(
                 [
-                    html.P("Payment:"),
                     dcc.Dropdown(
                         id='names',
                         value='payment',
@@ -98,7 +97,7 @@ layout = html.Div([
                                  for x in ['payment', 'gender', 'city']],
                         clearable=False
                     ),
-                    html.P("Gender:"),
+
                     dcc.Dropdown(
                         id='values',
                         value='gross_inc',
@@ -109,9 +108,7 @@ layout = html.Div([
                     dcc.Graph(id="pie-chart"),
                 ]
             ),
-        ]),
 
-        dbc.Row([
             dbc.Col(
                 [
                     dcc.Checklist(
@@ -136,7 +133,8 @@ layout = html.Div([
 def update_line_chart(product_line):
     mask = df.product_line.isin(product_line)
     fig = px.line(df[mask],
-                  x="month", y="gross_inc", color='city')
+                  x="date", y="gross_inc", color='gender', ),
+
     return fig
 
 
