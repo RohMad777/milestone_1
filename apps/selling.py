@@ -35,95 +35,111 @@ layout = html.Div([
             )
         ),
 
-
-        dbc.Row([
-            dbc.Col(
-                dcc.Dropdown(
-                    id='product-filter',
-                    options=[
-                        {'label': product_line, 'value': product_line} for product_line in df.product_line.unique()
-                    ],
-                    value='Health and beauty'
-                )
-            ),
-            dbc.Col(
-                dcc.Dropdown(
-                    id='payment-filter',
-                    options=[
-                        {'label': pay, 'value': pay} for pay in df.payment.unique()
-                    ],
-                    value='Ewallet'
-                )
-            )
-        ]),
-
-        dbc.Row([
-            dbc.Col(dcc.Graph(id='graph-1'), width=6),
-            dbc.Col(dcc.Graph(id='graph-2'), width=6)
-        ]),
-
-        dbc.Row([
-            dbc.Col(
-                dcc.Graph(
-                    id='graph-3',
-                    figure=px.scatter(
-                        df, x='date', y='gross_inc', color='product_line',
-                        title='Gross Income by Product Line'
-                    )
-                )
-            ),
-
-            dbc.Col(
-                dcc.Graph(
-                    id='graph-4',
-                    figure=px.bar(
-                        srt,
-                        x='date',
-                        y='gross_inc',
-                        color='city',
-                        title='Gross Income by City'
-                    )
-                )
-            )
-        ]),
-
-        dbc.Row([
-            dbc.Col(
-                [
+        dbc.Spinner([
+            dbc.Row([
+                dbc.Col(
                     dcc.Dropdown(
-                        id='names',
-                        value='payment',
-                        options=[{'value': x, 'label': x}
-                                 for x in ['payment', 'gender', 'city']],
-                        clearable=False
-                    ),
+                        id='product-filter',
+                        options=[
+                            {'label': product_line, 'value': product_line} for product_line in df.product_line.unique()
+                        ],
+                        value='Health and beauty',
 
+                    ), md="6"
+                ),
+                dbc.Col(
+                    dcc.Dropdown(
+                        id='payment-filter',
+                        options=[
+                            {'label': pay, 'value': pay} for pay in df.payment.unique()
+                        ],
+                        value='Ewallet'
+                    )
+                )
+            ]),
+
+            dbc.Row([
+                dbc.Col(dcc.Graph(id='graph-1'), width=6),
+                dbc.Col(dcc.Graph(id='graph-2'), width=6)
+            ]),
+
+            dbc.Row([
+                dbc.Col(
+                    dcc.Graph(
+                        id='graph-3',
+                        figure=px.scatter(
+                            df, x='date', y='gross_inc', color='product_line',
+                            title='Gross Income by Product Line'
+                        )
+                    )
+                ),
+
+                dbc.Col(
+                    dcc.Graph(
+                        id='graph-4',
+                        figure=px.bar(
+                            srt,
+                            x='date',
+                            y='gross_inc',
+                            color='city',
+                            title='Gross Income by City'
+                        )
+                    )
+                )
+            ]),
+            dbc.Row([
+                dbc.Col([
+                        html.P("Names:"),
+                        dcc.Dropdown(
+                            id='names',
+                            value='payment',
+                            options=[{'value': x, 'label': x}
+                                     for x in ['payment', 'gender', 'city']],
+                            clearable=False
+                        ),
+                        ],
+                        ),
+                dbc.Col([
+                    html.P("Values:"),
                     dcc.Dropdown(
                         id='values',
                         value='gross_inc',
                         options=[{'value': x, 'label': x}
-                                 for x in ['gross_inc', 'unit_price']],
+                                 for x in ['gross_inc', 'unit_price', 'total']],
                         clearable=False
                     ),
+
+                ])
+            ]),
+            dbc.Row([
+                dbc.Col([
+
                     dcc.Graph(id="pie-chart"),
-                ]
-            ),
+                ])
+            ]),
+            dbc.Row([dbc.Col(
+                html.H5(
+                     "Gross Income by Product and Gender",
+                    className="text-left",
+                     ),
+                className="mb-2 mt-5"
+            )]),
+            dbc.Row([
+                dbc.Col(
+                    [
+                        dcc.Checklist(
+                            id="checklist",
+                            options=[{"label": x, "value": x}
+                                     for x in df.product_line.unique()],
+                            value=df.product_line[:2],
+                            labelStyle={'display': 'inline-block'}
+                        ),
+                        dcc.Graph(id="line-chart"),
+                    ]
+                ),
+            ])
 
-            dbc.Col(
-                [
-                    dcc.Checklist(
-                        id="checklist",
-                        options=[{"label": x, "value": x}
-                                 for x in df.product_line.unique()],
-                        value=df.product_line[:2],
-                        labelStyle={'display': 'inline-block'}
-                    ),
-                    dcc.Graph(id="line-chart"),
-                ]
-            ),
-        ]),
-
-
+        ], type="grow", color="primary")
     ])
 ])
 
@@ -132,8 +148,8 @@ layout = html.Div([
     Output("line-chart", "figure"),
     [Input("checklist", "value")])
 def update_line_chart(product_line):
-    mask = df.product_line.isin(product_line)
-    fig = px.line(df[mask],
+    mask = df.groupby(['date', 'gender']).sum().reset_index()
+    fig = px.line(mask,
                   x="date", y="gross_inc", color='gender')
     return fig
 
@@ -143,7 +159,8 @@ def update_line_chart(product_line):
     [Input("names", "value"),
      Input("values", "value")])
 def generate_chart(names, values):
-    fig = px.pie(df, values=values, names=names, hole=.3)
+    fig = px.pie(df, values=values, names=names, hole=.3,
+                 color_discrete_sequence=px.colors.sequential.RdBu)
 
     return fig
 

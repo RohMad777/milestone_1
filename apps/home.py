@@ -29,7 +29,7 @@ layout = html.Div([
                         dbc.CardBody(
                             [
                                 dbc.CardImg(
-                                    src="/assets/img/visual.png", top=True),
+                                    src="/assets/img/visual.png", top=True, style={"width": "100%"},),
                                 html.H4("Visualization",
                                         className="card-title text-center"),
                                 html.P(
@@ -41,12 +41,11 @@ layout = html.Div([
                             ]
                         ),
                     ],
-                    style={"width": "20rem"},
+                    style={"width": "100%"},
                 ),
                 width=4, className="mb-6",  md=4, sm=3
             ),
 
-            dbc.Col(html.Div(""), width=4,  md=4, sm=3),
 
             dbc.Col(
                 dbc.Card(
@@ -54,7 +53,7 @@ layout = html.Div([
                         dbc.CardBody(
                             [
                                 dbc.CardImg(
-                                    src="/assets/img/hipo.png", top=True),
+                                    src="/assets/img/hipo.png", top=True, style={"width": "100%"}),
                                 html.H4("Hypothesis",
                                         className="card-title text-center"),
                                 html.P(
@@ -66,14 +65,14 @@ layout = html.Div([
                             ]
                         ),
                     ],
-                    style={"width": "20rem"},
+                    style={"width": "100%"},
                 ),
-                width=4, className="mb-6",  md=4, sm=3
+                width=4, className="mb-6",
             ),
         ],
             justify="around",
             align="end",
-            className="mb-5"
+            className="mb-5 md=4 sm=3"
         ),
     ])
 
