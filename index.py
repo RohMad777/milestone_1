@@ -2,14 +2,13 @@ import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
+from dash_html_components import Img
 
 from app import app
 from app import server
 
 from apps import home, selling, hypo
 
-# Create simple navbar with a brand text and 3 links: 2 to internal pages, 1 to original dataset
-# This navbar is always displayed on top
 app.layout = html.Div([
     dbc.NavbarSimple(
         brand="DASHBOARD",
