@@ -105,7 +105,7 @@ layout = html.Div([
                         id='values',
                         value='gross_inc',
                         options=[{'value': x, 'label': x}
-                                 for x in ['gross_inc', 'unit_price', 'total']],
+                                 for x in ['gross_inc', 'sell', 'total']],
                         clearable=False
                     ),
 
