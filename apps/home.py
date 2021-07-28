@@ -29,11 +29,11 @@ layout = html.Div([
                         dbc.CardBody(
                             [
                                 dbc.CardImg(
-                                    src="/assets/img/visual.png", top=True, style={"width": "100%"},),
+                                    src="/assets/img/visual.png", top=True,),
                                 html.H4("Visualization",
                                         className="card-title text-center"),
                                 html.P(
-                                    "Visualization data with graph, bar, pie, scatter",
+                                    "Visualization data with violin, bar, pie, scatter",
                                     className="card-text text-center",
                                 ),
                                 dbc.Button(
@@ -41,9 +41,9 @@ layout = html.Div([
                             ]
                         ),
                     ],
-                    style={"width": "100%"},
+                    style={"width": "80%"},
                 ),
-                width=4, className="mb-6",  md=4, sm=3
+                width=4, className="mb-6",
             ),
 
 
@@ -53,7 +53,7 @@ layout = html.Div([
                         dbc.CardBody(
                             [
                                 dbc.CardImg(
-                                    src="/assets/img/hipo.png", top=True, style={"width": "100%"}),
+                                    src="/assets/img/hipo.png", top=True,),
                                 html.H4("Hypothesis",
                                         className="card-title text-center"),
                                 html.P(
@@ -65,15 +65,15 @@ layout = html.Div([
                             ]
                         ),
                     ],
-                    style={"width": "100%"},
+                    style={"width": "80%"},
                 ),
                 width=4, className="mb-6",
             ),
         ],
             justify="around",
             align="end",
-            className="mb-5 md=4 sm=3"
+            className="mb-5"
         ),
-    ])
+    ], fluid=True)
 
 ])

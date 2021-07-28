@@ -32,7 +32,7 @@ layout = html.Div([
                     ]
                 ),
                 width=12
-            )
+            ),
         ),
 
         dbc.Spinner([
@@ -117,41 +117,44 @@ layout = html.Div([
                     dcc.Graph(id="pie-chart"),
                 ])
             ]),
-            dbc.Row([dbc.Col(
-                html.H5(
-                     "Gross Income by Product and Gender",
-                    className="text-left",
-                     ),
-                className="mb-2 mt-5"
-            )]),
-            dbc.Row([
-                dbc.Col(
-                    [
-                        dcc.Checklist(
-                            id="checklist",
-                            options=[{"label": x, "value": x}
-                                     for x in df.product_line.unique()],
-                            value=df.product_line[:2],
-                            labelStyle={'display': 'inline-block'}
-                        ),
-                        dcc.Graph(id="line-chart"),
-                    ]
-                ),
-            ])
+            # dbc.Row([dbc.Col(
+            #     html.H5(
+            #          "Gross Income by Product and Gender",
+            #         className="text-left",
+            #          ),
+            #     className="mb-2 mt-5"
+            # )]),
+            # dbc.Row([
+            #     dbc.Col(
+            #         [
+            #             dcc.Checklist(
+            #                 id="checklist",
+            #                 options=[{"label": x, "value": x}
+            #                          for x in df.product_line.unique()],
+            #                 value=df.product_line[:2],
+            #                 labelStyle={'display': 'inline-block'}
+            #             ),
+            #             dcc.Graph(id="line-chart"),
+            #         ]
+            #     ),
+            # ])
 
         ], type="grow", color="primary")
     ])
 ])
 
 
-@app.callback(
-    Output("line-chart", "figure"),
-    [Input("checklist", "value")])
-def update_line_chart(product_line):
-    mask = df.groupby(['date', 'gender']).sum().reset_index()
-    fig = px.line(mask,
-                  x="date", y="gross_inc", color='gender')
-    return fig
+# @app.callback(
+#     Output("line-chart", "figure"),
+#     [Input("checklist", "value")])
+# def update_line_chart(product_line):
+#     #mask = df.groupby(['date', 'gender']).sum().reset_index()
+#     mask = df.product_line.isin(product_line)
+#     fig = px.line(
+#         # mask,
+#         df[mask],
+#         x="date", y="sell", color='gender')
+#     return fig
 
 
 @app.callback(
