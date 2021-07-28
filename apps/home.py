@@ -33,7 +33,7 @@ layout = html.Div([
                                 html.H4("Visualization",
                                         className="card-title text-center"),
                                 html.P(
-                                    "Visualization data with violin, bar, pie, scatter",
+                                    "Visualization data with violin, bar, scatter, and pie chart",
                                     className="card-text text-center",
                                 ),
                                 dbc.Button(

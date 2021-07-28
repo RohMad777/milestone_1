@@ -151,8 +151,8 @@ layout = html.Div([
                     '''
                     ### Insights
 
-                    - Promotions can be done for groups of members and non-members of each gender because they have the same distribution.
-                    - If you want to increase the number of members, there are still many normal customers (non-members) that can be influenced.
+                    - If you want to offer a product and increase the number of new sales, you can do it for group members and non-members of each gender because they have the same distribution.
+                    - If you want to increase the number of members, it turns out that there are still many customers who shop not members.
                     '''
                 ],
                     className="mb-5 mt-5",),
