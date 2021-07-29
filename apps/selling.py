@@ -59,34 +59,36 @@ layout = html.Div([
             ]),
 
             dbc.Row([
-                dbc.Col(dcc.Graph(id='graph-1'), width=6),
-                dbc.Col(dcc.Graph(id='graph-2'), width=6)
-            ]),
+                    dbc.Col(dcc.Graph(id='graph-1'), width=6),
+                    dbc.Col(dcc.Graph(id='graph-2'), width=6)
+                    ]),
 
             dbc.Row([
-                dbc.Col(
-                    dcc.Graph(
-                        id='graph-3',
-                        figure=px.scatter(
-                            df, x='date', y='gross_inc', color='product_line',
-                            title='Gross Income by Product Line'
+                    dbc.Col(
+                        dcc.Graph(
+                            id='graph-3',
+                            figure=px.scatter(
+                                df, x='date', y='gross_inc', color='product_line',
+                                title='Gross Income by Product Line'
+                            )
                         )
-                    )
-                ),
+                    ),
 
-                dbc.Col(
-                    dcc.Graph(
-                        id='graph-4',
-                        figure=px.bar(
-                            srt,
-                            x='date',
-                            y='gross_inc',
-                            color='city',
-                            title='Gross Income by City'
+                    dbc.Col(
+                        dcc.Graph(
+                            id='graph-4',
+                            figure=px.bar(
+                                srt,
+                                x='date',
+                                y='gross_inc',
+                                color='city',
+                                title='Gross Income by City'
+                            )
                         )
                     )
-                )
-            ]),
+
+                    ]),
+
             dbc.Row([
                 dbc.Col([
                         html.P("Names:"),
@@ -111,12 +113,14 @@ layout = html.Div([
 
                 ])
             ]),
-            dbc.Row([
-                dbc.Col([
+            dbc.Spinner([
+                dbc.Row([
+                    dbc.Col([
 
-                    dcc.Graph(id="pie-chart"),
-                ])
-            ]),
+                        dcc.Graph(id="pie-chart"),
+                    ])
+                ]),
+            ], type="grow", color="warning"),
             # dbc.Row([dbc.Col(
             #     html.H5(
             #          "Gross Income by Product and Gender",
