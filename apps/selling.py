@@ -43,7 +43,7 @@ layout = html.Div([
                         options=[
                             {'label': product_line, 'value': product_line} for product_line in df.product_line.unique()
                         ],
-                        value='Health and beauty',
+                        value='Health and beauty'
 
                     ), md="6"
                 ),
@@ -96,7 +96,7 @@ layout = html.Div([
                             id='names',
                             value='payment',
                             options=[{'value': x, 'label': x}
-                                     for x in ['payment', 'gender', 'city']],
+                                     for x in ['payment', 'customer_type', 'gender', 'city']],
                             clearable=False
                         ),
                         ],
